@@ -1,0 +1,20 @@
+@mixin list-group-theme-variants($state, $background, $color) {
+  .list-group-item-#{$state} {
+    color: $color;
+    background-color: #{RGBA(to-rgb($background), var(--#{$prefix}bg-opacity))};
+
+    &.list-group-item-action {
+      &:hover,
+      &:focus {
+        color: $color;
+        background-color: #{RGBA(to-rgb(shade-color($background, 20%)), var(--#{$prefix}bg-opacity))};
+      }
+
+      &.active {
+        color: $white;
+        background-color: $color;
+        border-color: $color;
+      }
+    }
+  }
+}

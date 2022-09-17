@@ -1,0 +1,91 @@
+/* stylelint-disable declaration-block-single-line-max-declarations */
+@import "bootstrap-import";
+
+@each $palette, $palette-map in $palette-colors {
+
+  $bg-body: map-get($palette-map, "body_bg");
+  $fg-body: map-get($palette-map, "body_color");
+
+  $is-dark: color-contrast($bg-body) == $color-contrast-light;
+
+  [data-bs-theme="#{$palette}"] {
+
+    .btn-bd-light {
+      --bs-btn-color: $fg-body;
+    }
+
+    .anchor-link {
+      color: rgba(var(--#{prefix}body-bg-rgb), .5);
+
+      &:focus,
+      &:hover,
+      :hover > &,
+      :target > & {
+        color: var(--#{prefix}body-bg-rgb);
+      }
+    }
+
+    .highlight {
+      @if ($is-dark) {
+        --base00: #282c34;
+        --base01: #353b45;
+        --base02: #3e4451;
+        --base03: #868e96;
+        --base04: #565c64;
+        --base05: #abb2bf;
+        --base06: #b6bdca;
+        --base07: #d19a66;
+        --base08: #e06c75;
+        --base09: #d19a66;
+        --base0A: #e5c07b;
+        --base0B: #98c379;
+        --base0C: #56b6c2;
+        --base0D: #61afef;
+        --base0E: #c678dd;
+        --base0F: #be5046;
+      }
+      @else {
+        --base00: #fff;
+        --base01: #f5f5f5;
+        --base02: #c8c8fa;
+        --base03: #565c64;
+        --base04: #030303;
+        --base05: #333;
+        --base06: #fff;
+        --base07: #9a6700;
+        --base08: #bc4c00;
+        --base09: #087990;
+        --base0A: #795da3;
+        --base0B: #183691;
+        --base0C: #183691;
+        --base0D: #795da3;
+        --base0E: #a71d5d;
+        --base0F: #333;
+      }
+    }
+  }
+
+  @each $theme, $hex-color in $theme-colors {
+    @if ($theme != "white" and $theme != "gray" and $theme != "gray-dark") {
+      $color-100: tint-color($hex-color, 80%);
+      $color-200: tint-color($hex-color, 60%);
+      $color-300: tint-color($hex-color, 40%);
+      $color-400: tint-color($hex-color, 20%);
+      $color-500: $hex-color;
+      $color-600: shade-color($hex-color, 20%);
+      $color-700: shade-color($hex-color, 40%);
+      $color-800: shade-color($hex-color, 60%);
+      $color-900: shade-color($hex-color, 80%);
+
+      .bd-#{$theme}-100 { color: color-contrast($color-100); background-color: $color-100; }
+      .bd-#{$theme}-200 { color: color-contrast($color-200); background-color: $color-200; }
+      .bd-#{$theme}-300 { color: color-contrast($color-300); background-color: $color-300; }
+      .bd-#{$theme}-400 { color: color-contrast($color-400); background-color: $color-400; }
+      .bd-#{$theme}-500 { color: color-contrast($color-500); background-color: $color-500; }
+      .bd-#{$theme}-600 { color: color-contrast($color-600); background-color: $color-600; }
+      .bd-#{$theme}-700 { color: color-contrast($color-700); background-color: $color-700; }
+      .bd-#{$theme}-800 { color: color-contrast($color-800); background-color: $color-800; }
+      .bd-#{$theme}-900 { color: color-contrast($color-900); background-color: $color-900; }
+    }
+  }
+}

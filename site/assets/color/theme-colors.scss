@@ -1,0 +1,140 @@
+@import "bootstrap-import";
+@import "theme-table-variants";
+@import "theme-list-group-variants";
+@import "theme-alert-variant";
+
+@each $palette, $palette-map in $palette-colors {
+
+  [data-bs-theme="#{$palette}"] {
+
+    $bg-opacity: .3;
+    $bg-body: map-get($palette-map, "body_bg");
+    $fg-body: map-get($palette-map, "body_color");
+
+    $is-dark: color-contrast($bg-body) == $color-contrast-light;
+
+    @each $theme, $color in $theme-colors {
+
+      $bg-color: if($is-dark, shade-color($color, 50%), tint-color($color, 40%));
+      $fg-color: if($is-dark, tint-color($color, 65%), shade-color($color, 65%));
+
+      --#{$prefix}bg-opacity: #{$bg-opacity};
+
+      // .text-*
+      // http://localhost:9001/docs/5.2/utilities/colors/
+      .text-#{$theme} {
+        @if ($theme != "light" and $theme != "dark") {
+          $text-color: if($is-dark, tint-color($color, 30%), shade-color($color, 20%));
+          --#{$prefix}#{$theme}-rgb: #{to-rgb($text-color)};
+        }
+      }
+
+      // .bg-*
+      // http://localhost:9001/docs/5.2/utilities/background/
+      .bg-#{$theme} {
+        --#{$prefix}#{$theme}-rgb: #{to-rgb($bg-color)};
+      }
+
+      // .text-bg-*
+      // http://localhost:9001/docs/5.2/helpers/color-background/
+      .text-bg-#{$theme} {
+        background-color: $bg-color if($enable-important-utilities, !important, null);
+        @if ($theme != "light" and $theme != "dark") {
+          color: $fg-color if($enable-important-utilities, !important, null);
+        }
+        @if ($is-dark) {
+          @if ($theme == "light" or $theme == "dark") {
+            color: $white if($enable-important-utilities, !important, null);
+          }
+        }
+        @else {
+          @if ($theme == "light" or $theme == "dark") {
+            color: $black if($enable-important-utilities, !important, null);
+          }
+        }
+      }
+
+      // .link-*
+      // http://localhost:9001/docs/5.2/helpers/colored-links/
+      .link-#{$theme} {
+        $link-color: if($is-dark, tint-color($color, 30%), shade-color($color, 20%)) if($enable-important-utilities, !important, null);
+        --#{$prefix}link-color: #{$link-color};
+      }
+
+      // .border-*
+      // http://localhost:9001/docs/5.2/utilities/borders/
+      .border-#{$theme} {
+        --#{$prefix}#{$theme}-rgb: #{to-rgb(if($is-dark, tint-color($color, 30%), shade-color($color, 20%)))};
+        // docs override fix. not require.
+        border-color: rgba(var(--#{$prefix}#{$theme}-rgb), var(--#{$prefix}border-opacity));
+      }
+
+      // .alert-*
+      // http://localhost:9001/docs/5.2/components/alerts/
+      $alert-bg: rgba(var(--#{$prefix}#{$theme}-rgb), var(--#{$prefix}bg-opacity));
+      $alert-border: rgba(var(--#{$prefix}#{$theme}-rgb), var(--#{$prefix}bg-opacity));
+
+      @if ($theme != "light" and $theme != "dark") {
+        @include alert-theme-variant(#{$theme}, $alert-bg, $alert-border, $fg-color);
+      }
+      @if ($is-dark) {
+        @if ($theme == "light" or $theme == "dark") {
+          @include alert-theme-variant(#{$theme}, $alert-bg, $alert-border, $white);
+        }
+      }
+      @else {
+        @if ($theme == "light" or $theme == "dark") {
+          @include alert-theme-variant(#{$theme}, $alert-bg, $alert-border, $black);
+        }
+      }
+
+      // .table-*
+      // http://localhost:9001/docs/5.2/content/tables/#variants
+      @if ($theme != "light" and $theme != "dark") {
+        @include table-theme-variant(#{$theme}, $bg-color, $fg-color);
+      }
+      @if ($is-dark) {
+        @if ($theme == "light" or $theme == "dark") {
+          @include table-theme-variant(#{$theme}, $bg-color, $white);
+        }
+      }
+      @else {
+        @if ($theme == "light" or $theme == "dark") {
+          @include table-theme-variant(#{$theme}, $bg-color, $black);
+        }
+      }
+
+      // .list-group-item-*
+      // http://localhost:9001/docs/5.2/components/list-group/#contextual-classes
+      @if ($theme != "light" and $theme != "dark") {
+        @include list-group-theme-variants(#{$theme}, $bg-color, $fg-color);
+      }
+      @if ($is-dark) {
+        @if ($theme == "light" or $theme == "dark") {
+          @include list-group-theme-variants(#{$theme}, $bg-color, $white);
+        }
+      }
+      @else {
+        @if ($theme == "light" or $theme == "dark") {
+          @include list-group-theme-variants(#{$theme}, $bg-color, $black);
+        }
+      }
+
+      // .button-*
+      // http://localhost:9001/docs/5.2/components/buttons/
+      @if ($theme != "light" and $theme != "dark") {
+        $b-btn: if($is-dark, shade-color($color, 40%), tint-color($color, 40%));
+        $bg-btn: if($is-dark, shade-color($color, 50%), tint-color($color, 50%));
+        .btn-#{$theme} {
+          @include button-variant($bg-btn, $b-btn);
+        }
+
+        $fg-btn-outline: if($is-dark, shade-color($color, 15%), tint-color($color, 20%));
+        $ah-btn-outline: if($is-dark, shade-color($color, 45%), tint-color($color, 50%));
+        .btn-outline-#{$theme} {
+          @include button-outline-variant($fg-btn-outline, color-contrast($fg-btn-outline), $ah-btn-outline);
+        }
+      }
+    }
+  }
+}
