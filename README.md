@@ -3,82 +3,73 @@
 
 **Attention! Under construction!**
 
-[It works with this Bootstrap source!!!](https://github.com/twbs/bootstrap/tree/new-masthead-darkmode)
+It only works with this Bootstrap source: [https://github.com/twbs/bootstrap/tree/new-masthead-darkmode](https://github.com/twbs/bootstrap/tree/new-masthead-darkmode)
+
+## What are the requirements for customize?
+
+[https://getbootstrap.com](https://getbootstrap.com) and [https://sass-lang.com](https://sass-lang.com)
 
 ## SCSS
 
-Generates CSS from background, foreground and accent colors and Bootstrap colors. It's very small and includes everything you need to create a new color scheme and customize it. It only uses CSS variable override.
+Generates CSS from background, foreground and accent colors, and Bootstrap colors. It's very small and includes everything you need to create a new color scheme and customize it. It only uses CSS variable override. **gen-light** and **gen-dark** same color as Bootstrap light and dark, except for the accent color. The other colors are just samples.
 
-## Files
+Everything based on [nesting color modes](https://bootstrap.czirok.net/docs/5.2/customize/color/#nesting-color-modes) and [new theme colors](https://bootstrap.czirok.net/docs/5.2/customize/color/#new-theme-colors).
 
-### Colors
+You can easily set your favorite background, foreground and accent colors for light and dark theme.
 
-```bash
-/site/assets/color/_palette.scss
-/site/data/color/palette.yml
-```
-
-Contains background, foreground and accent colors only. **gen-light** and **gen-dark** same color as Bootstrap light and dark, except for the accent color. The other colors are just samples.
-
-### Root
+Add the colors to these files:
 
 ```bash
-/site/assets/color/root.scss
+/site/assets/color/_palette.scss # (Needed for CSS)
+/site/data/color/palette.yml     # (Needed for UI)
 ```
 
-It's like bootstrap .root.scss and modifies the following classes:
+Follow the installation guide below and you're done.
 
-- .accordion-button
-- .list-group-item
-- .btn-close
-- .progress
-- .carousel
-- .form-select
-- .form-switch
-- .form-check-input
-- .form-range
-- .form-control
+## Customizable colors and icons
 
-### Theme colors
+What's not listed just works. Big thanks to the Bootstrap team.
 
-```bash
-/site/assets/color/theme-colors.scss
-```
+### Content
 
-Everything that uses $theme-colors variable:
+- [Tables](https://bootstrap.czirok.net/docs/5.2/content/tables/)
 
-- .text-*
-- .bg-*
-- .text-bg-*
-- .link-*
-- .border-*
-- .alert-*
-- .table-*
-- .list-group-item-*
-- .btn-
-- .btn-outline-*
+### Forms
 
-### Other scss
+- [Controls](https://bootstrap.czirok.net/docs/5.2/forms/form-control/)
+- [Select](https://bootstrap.czirok.net/docs/5.2/forms/select/#default)
+- [Checks and radios](https://bootstrap.czirok.net/docs/5.2/forms/checks-radios/#checks)
+  - [Switch](https://bootstrap.czirok.net/docs/5.2/forms/checks-radios/#switches)
+- [Range](https://bootstrap.czirok.net/docs/5.2/forms/range/)
 
-```bash
-/site/assets/color/docs.scss
-```
+### Components
 
-Overrides some CSS classes for a better visual experience.
+- [Accordion](https://bootstrap.czirok.net/docs/5.2/components/accordion/)
+- [Alerts](https://bootstrap.czirok.net/docs/5.2/components/alerts/)
+- [Carousel](https://bootstrap.czirok.net/docs/5.2/components/carousel/)
+- [Close button](https://bootstrap.czirok.net/docs/5.2/components/close-button/)
+- [List group](https://bootstrap.czirok.net/docs/5.2/components/list-group/)
+- [Progress](https://bootstrap.czirok.net/docs/5.2/components/progress/)
+- [Buttons](https://bootstrap.czirok.net/docs/5.2/components/buttons/)
+  - [Outline buttons](https://bootstrap.czirok.net/docs/5.2/components/buttons/)
 
-```bash
-/site/assets/color/_theme-*.scss
-```
+### Helpers
 
-Copy from Bootstrap /scss/mixins directory. With a very small modification.
+- [Color & background](https://bootstrap.czirok.net/docs/5.2/helpers/color-background/)
+- [Colored links](https://bootstrap.czirok.net/docs/5.2/helpers/colored-links/)]
+
+### Utilities
+
+- [Background](https://bootstrap.czirok.net/docs/5.2/utilities/background/)
+- [Borders](https://bootstrap.czirok.net/docs/5.2/utilities/borders/)
+- [Colors](https://bootstrap.czirok.net/docs/5.2/utilities/colors/)
 
 ## Install
 
-Copy all files to bootstrap sources directory. **Except .git and README.md!**
+After you are done with [Bootstrap Contribute](https://getbootstrap.com/docs/5.2/getting-started/contribute/), and everything works, copy all files to bootstrap sources directory. **Except .git and README.md!**
 
-### File: /packages.json
+Open the **/packages.json** file, and add this content after [this line](https://github.com/twbs/bootstrap/blob/new-masthead-darkmode/package.json#L101)
 
-Add this content after [this line](https://github.com/twbs/bootstrap/blob/new-masthead-darkmode/package.json#L101)
 
 ```json
 "color-start": "npm-run-all --parallel color-watch-css docs-serve",
@@ -88,9 +79,7 @@ Add this content after [this line](https://github.com/twbs/bootstrap/blob/new-ma
 "color-css-lint-vars": "fusv site/assets/color/"
 ```
 
-### File /site/layouts/partials/docs-navbar.html
-
-Add this content after [this line](https://github.com/twbs/bootstrap/blob/new-masthead-darkmode/site/layouts/partials/docs-navbar.html#L118)
+Open the **/site/layouts/partials/docs-navbar.html** file, and add this content after [this line](https://github.com/twbs/bootstrap/blob/new-masthead-darkmode/site/layouts/partials/docs-navbar.html#L118)
 
 ```html
 {{ range $.Site.Data.color.palette }}
@@ -104,9 +93,7 @@ Add this content after [this line](https://github.com/twbs/bootstrap/blob/new-ma
 {{ end }}
 ```
 
-### File: /site/layouts/partials/icons.html
-
-Add this content after [this line](https://github.com/twbs/bootstrap/blob/new-masthead-darkmode/site/layouts/partials/icons.html#L81)
+Open the **/site/layouts/partials/icons.html** file, and add this content after [this line](https://github.com/twbs/bootstrap/blob/new-masthead-darkmode/site/layouts/partials/icons.html#L81)
 
 ```html
 {{ range $.Site.Data.color.palette }}
@@ -116,9 +103,7 @@ Add this content after [this line](https://github.com/twbs/bootstrap/blob/new-ma
 {{ end }}
 ```
 
-### File: /site/layouts/partials/stylesheet.html
-
-Add this content after [this line](https://github.com/twbs/bootstrap/blob/new-masthead-darkmode/site/layouts/partials/stylesheet.html#L27)
+Open the **/site/layouts/partials/stylesheet.html** file, and add this content after [this line](https://github.com/twbs/bootstrap/blob/new-masthead-darkmode/site/layouts/partials/stylesheet.html#L27)
 
 ```html
 {{- $postcssColorOptions := dict "use" "autoprefixer" "noMap" true -}}
@@ -141,9 +126,8 @@ Add this content after [this line](https://github.com/twbs/bootstrap/blob/new-ma
 <link href="{{ $colorDocsTheme.Permalink | relURL }}" rel="stylesheet" />
 ```
 
-## Execute
+## Using npm scripts
 
 ```bash
-npm install
 npm run color-start
 ```
