@@ -17,7 +17,7 @@ Generates CSS from background and foreground colors and Bootstrap colors.
 /site/data/color/palette.yml
 ```
 
-Background and foreground colors only. **gen-light** and **gen-dark** same color as Bootstrap light and dark. The other colors are just samples (Very funny).
+Background and foreground and accent colors only. **gen-light** and **gen-dark** same color as Bootstrap light and dark, except for the accent. The other colors are just samples (Very funny).
 
 ### Root
 
