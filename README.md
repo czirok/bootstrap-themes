@@ -74,7 +74,7 @@ Copy from Bootstrap /scss/mixins directory. With a very small modification.
 
 ## Install
 
-Copy all files to bootstrap sources directory
+Copy all files to bootstrap sources directory. **Except .git and README.md!**
 
 ### File: /packages.json
 
