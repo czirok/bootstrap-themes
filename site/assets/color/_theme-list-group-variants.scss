@@ -1,19 +1,28 @@
+// Hacking Bootstrap, convert back to variables
 @mixin list-group-theme-variants($state, $background, $color) {
   .list-group-item-#{$state} {
-    color: $color;
-    background-color: #{RGBA(to-rgb($background), var(--#{$prefix}bg-opacity))};
+    --#{$prefix}bg-opacity: .3;
+    --#{$prefix}list-group-bg: #{RGBA(var(--#{$prefix}#{$state}-rgb), var(--#{$prefix}bg-opacity))};
+    --#{$prefix}list-group-color: $color;
+    color: var(--#{$prefix}list-group-color);
+    background-color: var(--#{$prefix}list-group-bg);
 
     &.list-group-item-action {
       &:hover,
       &:focus {
-        color: $color;
-        background-color: #{RGBA(to-rgb(shade-color($background, 20%)), var(--#{$prefix}bg-opacity))};
+        --#{$prefix}list-group-action-hover-color: $color;
+        --#{$prefix}list-group-action-hover-bg: #{RGBA(var(--#{$prefix}#{$state}-rgb), .5)};
+        color: var(--#{$prefix}list-group-action-hover-color);
+        background-color: var(--#{$prefix}list-group-action-hover-bg);
       }
 
       &.active {
-        color: $white;
-        background-color: $color;
-        border-color: $color;
+        --#{$prefix}list-group-action-active-color: $color;
+        --#{$prefix}list-group-action-active-bg: #{RGBA(var(--#{$prefix}#{$state}-rgb), .9)};
+        --#{$prefix}list-group-active-border-color: #{RGBA(var(--#{$prefix}#{$state}-rgb), 1)};
+        color: var(--#{$prefix}list-group-action-active-color);
+        background-color: var(--#{$prefix}list-group-action-active-bg);
+        border-color: var(--#{$prefix}list-group-active-border-color);
       }
     }
   }

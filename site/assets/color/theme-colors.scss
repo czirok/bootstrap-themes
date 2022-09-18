@@ -1,3 +1,5 @@
+// stylelint-disable function-name-case
+
 @import "bootstrap-import";
 @import "theme-table-variants";
 @import "theme-list-group-variants";
@@ -7,7 +9,6 @@
 
   [data-bs-theme="#{$palette}"] {
 
-    $bg-opacity: .3;
     $bg-body: map-get($palette-map, "body_bg");
     $fg-body: map-get($palette-map, "body_color");
 
@@ -17,8 +18,6 @@
 
       $bg-color: if($is-dark, shade-color($color, 50%), tint-color($color, 40%));
       $fg-color: if($is-dark, tint-color($color, 65%), shade-color($color, 65%));
-
-      --#{$prefix}bg-opacity: #{$bg-opacity};
 
       // .text-*
       // http://localhost:9001/docs/5.2/utilities/colors/
@@ -38,7 +37,7 @@
       // .text-bg-*
       // http://localhost:9001/docs/5.2/helpers/color-background/
       .text-bg-#{$theme} {
-        background-color: $bg-color if($enable-important-utilities, !important, null);
+        background-color: RGBA(to-rgb($bg-color), var(--#{$prefix}bg-opacity, 1)) if($enable-important-utilities, !important, null);
         @if ($theme != "light" and $theme != "dark") {
           color: $fg-color if($enable-important-utilities, !important, null);
         }
@@ -57,66 +56,66 @@
       // .link-*
       // http://localhost:9001/docs/5.2/helpers/colored-links/
       .link-#{$theme} {
-        $link-color: if($is-dark, tint-color($color, 30%), shade-color($color, 20%)) if($enable-important-utilities, !important, null);
+        $link-color: if($is-dark, tint-color($color, 30%), shade-color($color, 20%));
+        // Hacking Bootstrap, convert back to variable
         --#{$prefix}link-color: #{$link-color};
+        color: var(--#{$prefix}link-color) if($enable-important-utilities, !important, null);
       }
 
       // .border-*
       // http://localhost:9001/docs/5.2/utilities/borders/
       .border-#{$theme} {
         --#{$prefix}#{$theme}-rgb: #{to-rgb(if($is-dark, tint-color($color, 30%), shade-color($color, 20%)))};
-        // docs override fix. not require.
-        border-color: rgba(var(--#{$prefix}#{$theme}-rgb), var(--#{$prefix}border-opacity));
       }
 
       // .alert-*
       // http://localhost:9001/docs/5.2/components/alerts/
-      $alert-bg: rgba(var(--#{$prefix}#{$theme}-rgb), var(--#{$prefix}bg-opacity));
-      $alert-border: rgba(var(--#{$prefix}#{$theme}-rgb), var(--#{$prefix}bg-opacity));
+      $alert-bg: rgba(var(--#{$prefix}#{$theme}-rgb), .3);
+      $alert-border: rgba(var(--#{$prefix}#{$theme}-rgb), .4);
 
       @if ($theme != "light" and $theme != "dark") {
-        @include alert-theme-variant(#{$theme}, $alert-bg, $alert-border, $fg-color);
+        @include alert-theme-variant($theme, $alert-bg, $alert-border, $fg-color);
       }
       @if ($is-dark) {
         @if ($theme == "light" or $theme == "dark") {
-          @include alert-theme-variant(#{$theme}, $alert-bg, $alert-border, $white);
+          @include alert-theme-variant($theme, $alert-bg, $alert-border, $white);
         }
       }
       @else {
         @if ($theme == "light" or $theme == "dark") {
-          @include alert-theme-variant(#{$theme}, $alert-bg, $alert-border, $black);
+          @include alert-theme-variant($theme, $alert-bg, $alert-border, $black);
         }
       }
 
       // .table-*
       // http://localhost:9001/docs/5.2/content/tables/#variants
       @if ($theme != "light" and $theme != "dark") {
-        @include table-theme-variant(#{$theme}, $bg-color, $fg-color);
+        @include table-theme-variant($theme, $bg-color, $fg-color);
       }
       @if ($is-dark) {
         @if ($theme == "light" or $theme == "dark") {
-          @include table-theme-variant(#{$theme}, $bg-color, $white);
+          @include table-theme-variant($theme, $bg-color, $white);
         }
       }
       @else {
         @if ($theme == "light" or $theme == "dark") {
-          @include table-theme-variant(#{$theme}, $bg-color, $black);
+          @include table-theme-variant($theme, $bg-color, $black);
         }
       }
 
       // .list-group-item-*
       // http://localhost:9001/docs/5.2/components/list-group/#contextual-classes
       @if ($theme != "light" and $theme != "dark") {
-        @include list-group-theme-variants(#{$theme}, $bg-color, $fg-color);
+        @include list-group-theme-variants($theme, $bg-color, $fg-color);
       }
       @if ($is-dark) {
         @if ($theme == "light" or $theme == "dark") {
-          @include list-group-theme-variants(#{$theme}, $bg-color, $white);
+          @include list-group-theme-variants($theme, $bg-color, $white);
         }
       }
       @else {
         @if ($theme == "light" or $theme == "dark") {
-          @include list-group-theme-variants(#{$theme}, $bg-color, $black);
+          @include list-group-theme-variants($theme, $bg-color, $black);
         }
       }
 

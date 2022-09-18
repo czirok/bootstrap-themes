@@ -14,6 +14,11 @@
       --bs-btn-color: $fg-body;
     }
 
+    // http://localhost:9001/docs/5.2/components/tooltips/#custom-tooltips
+    .custom-tooltip {
+      --bs-tooltip-color: color-contrast($primary);
+    }
+
     .anchor-link {
       color: rgba(var(--#{prefix}body-bg-rgb), .5);
 

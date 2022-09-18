@@ -1,0 +1,8 @@
+- name: gen-light
+  body_bg: "#fff"
+  body_color: "#212529"
+  accent_color: "#FF9671"
+- name: gen-dark
+  body_bg: "#212529"
+  body_color: "#adb5bd"
+  accent_color: "#C34A36"

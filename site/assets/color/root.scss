@@ -5,11 +5,15 @@
   [data-bs-theme="#{$palette}"] {
     $bg-body: map-get($palette-map, "body_bg");
     $fg-body: map-get($palette-map, "body_color");
+    $accent:  map-get($palette-map, "accent_color");
+
     $is-dark: color-contrast($bg-body) == $color-contrast-light;
 
     color-scheme: if($is-dark, dark, light);
 
+    --#{$prefix}white: #{$white};
     --#{$prefix}white-rgb: #{to-rgb($white)};
+    --#{$prefix}black: #{$black};
     --#{$prefix}black-rgb: #{to-rgb($black)};
 
     --#{$prefix}body-color: #{$fg-body};
@@ -18,13 +22,17 @@
     --#{$prefix}body-bg-rgb: #{to-rgb($bg-body)};
 
     @each $name, $hex in $theme-colors {
-      --#{$prefix}#{$name}: #{$hex};
+      --#{$prefix}#{$name}: #{if($is-dark, shade-color($hex, 50%), tint-color($hex, 40%))};
+      --#{$prefix}#{$name}-rgb: #{to-rgb(if($is-dark, shade-color($hex, 50%), tint-color($hex, 40%)))};
     }
 
     @each $name, $hex in $theme-colors {
       --#{$prefix}grays-#{$name}: #{$hex};
     }
 
+    $accent-bg: $accent;
+    $accent-color: color-contrast($accent-bg);
+    $accent-border: if($is-dark, shade-color($accent, 20%), tint-color($accent, 10%));
     $emphasis-color: if($is-dark, $gray-100, $black);
     $secondary-color: if($is-dark, rgba($fg-body, .75), rgba($fg-body, .75));
     $secondary-bg: if($is-dark, tint-color($bg-body, 10%), shade-color($bg-body, 10%));
@@ -37,6 +45,9 @@
     $link-hover-color: if($is-dark, $blue-200, $blue-800);
     $code-color: if($is-dark, $pink-300, $pink-700);
 
+    --#{$prefix}accent-color: #{$accent-color};
+    --#{$prefix}accent-bg: #{$accent-bg};
+    --#{$prefix}accent-border: #{$accent-border};
     --#{$prefix}emphasis-color: #{$emphasis-color};
     --#{$prefix}emphasis-color-rgb: #{to-rgb($emphasis-color)};
     --#{$prefix}secondary-color: #{$secondary-color};
@@ -54,19 +65,15 @@
     --#{$prefix}link-hover-color: #{$link-hover-color};
     --#{$prefix}code-color: #{$code-color};
 
-    $b-primary:  if($is-dark, shade-color($primary, 20%), tint-color($primary, 10%));
-    $bg-primary: if($is-dark, shade-color($primary, 50%), tint-color($primary, 40%));
-    $fg-primary: if($is-dark, tint-color($primary, 65%), shade-color($primary, 65%));
-
     // .accordion-button-*
     // http://localhost:9001/docs/5.2/components/accordion/
     .accordion-button {
-      --#{$prefix}accordion-active-color: #{$fg-primary};
-      --#{$prefix}accordion-active-bg: #{$bg-primary};
+      --#{$prefix}accordion-active-color: var(--#{$prefix}accent-color);
+      --#{$prefix}accordion-active-bg: var(--#{$prefix}accent-bg);
 
       &:not(.collapsed) {
         &::after {
-          --#{$prefix}accordion-btn-active-icon: #{escape-svg(url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$fg-primary}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>"))};
+          --#{$prefix}accordion-btn-active-icon: #{escape-svg(url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$accent-color}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>"))};
         }
       }
       &::after {
@@ -77,9 +84,9 @@
     // .list-group-item-*
     // http://localhost:9001/docs/5.2/components/list-group/
     .list-group-item {
-      --#{$prefix}list-group-active-color: #{$fg-primary};
-      --#{$prefix}list-group-active-bg: #{$bg-primary};
-      --#{$prefix}list-group-active-border-color: #{$bg-primary};
+      --#{$prefix}list-group-active-color: var(--#{$prefix}accent-color);
+      --#{$prefix}list-group-active-bg: var(--#{$prefix}accent-bg);
+      --#{$prefix}list-group-active-border-color: var(--#{$prefix}accent-border);
     }
 
     // .button-close*
@@ -99,10 +106,8 @@
       --#{$prefix}form-select-bg: #{escape-svg($icon-form-select)};
     }
 
-    // http://localhost:9001/docs/5.2/forms/checks-radios/
-    $icon-form-switch-bg:    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='#{$fg-body}'/></svg>") !default;
-
     // http://localhost:9001/docs/5.2/forms/checks-radios/#switches
+    $icon-form-switch-bg:    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='#{$fg-body}'/></svg>") !default;
     .form-switch {
       // Use `:not()` to keep from having to override subsequent embedded SVGs
       .form-check-input:not(:checked):not(:focus) {
@@ -110,17 +115,22 @@
       }
     }
 
-    // http://localhost:9001/docs/5.2/forms/checks-radios/#switches
     .form-check-input {
       &:checked {
-        background-color: #{$bg-primary};
-        border-color: #{$b-primary};
+        background-color: var(--#{$prefix}accent-bg);
+        border-color: var(--#{$prefix}accent-border);
       }
 
       &[type="checkbox"]:indeterminate {
-        background-color: #{$bg-primary};
-        border-color: #{$b-primary};
+        background-color: var(--#{$prefix}accent-bg);
+        border-color: var(--#{$prefix}accent-border);
       }
+    }
+
+    // http://localhost:9001/docs/5.2/components/progress/
+    .progress {
+      --#{$prefix}progress-bar-color: var(--#{$prefix}accent-color);
+      --#{$prefix}progress-bar-bg: var(--#{$prefix}accent-bg);
     }
   }
 }
