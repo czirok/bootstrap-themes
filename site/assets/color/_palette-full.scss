@@ -1,90 +1,89 @@
-$palette-colors: (
-  "gen-light":(
-    "body_bg": #fff,
-    "body_color": #212529,
-    "accent_color": #ff9671
-  ), "gen-dark":(
-    "body_bg": #212529,
-    "body_color": #adb5bd,
-    "accent_color": #c34a36
-  ), "snowberry":(
-    "body_bg": #e8e8e8,
-    "body_color": #181818,
-    "accent_color": #ff9671
-  ), "tropical-blue":(
-    "body_bg": #c9e8f8,
-    "body_color": #0c364b,
-    "accent_color": #4b0c0c
-  ), "perfume":(
-    "body_bg": #c9c9f8,
-    "body_color": #0c0c4b,
-    "accent_color": #4b360c
-  ), "pink-illusion":(
-    "body_bg": #e8c9f8,
-    "body_color": #360c4b,
-    "accent_color": #364b0c
-  ), "chantilly":(
-    "body_bg": #f8c8e8,
-    "body_color": #4b0c36,
-    "accent_color": #0c4b0c
-  ), "azalea":(
-    "body_bg": #f8c9c9,
-    "body_color": #4b0c0c,
-    "accent_color": #0c4b36
-  ), "givry":(
-    "body_bg": #f8e8c9,
-    "body_color": #4b360c,
-    "accent_color": #0c364b
-  ), "orinoco":(
-    "body_bg": #e8f8c9,
-    "body_color": #364b0c,
-    "accent_color": #0c0c4b
-  ), "blue-romance":(
-    "body_bg": #c9f8c9,
-    "body_color": #0c4b0c,
-    "accent_color": #360c4b
-  ), "humming-bird":(
-    "body_bg": #c9f8e8,
-    "body_color": #0c4b36,
-    "accent_color": #4b0c36
-  ), "thamar-black":(
-    "body_bg": #181818,
-    "body_color": #e8e8e8,
-    "accent_color": #c34a36
-  ), "tarawera":(
-    "body_bg": #0c364b,
-    "body_color": #c9e8f8,
-    "accent_color": #4b0c0c
-  ), "violet":(
-    "body_bg": #0c0c4b,
-    "body_color": #c9c9f8,
-    "accent_color": #4b360c
-  ), "jagger":(
-    "body_bg": #360c4b,
-    "body_color": #e8c9f8,
-    "accent_color": #364b0c
-  ), "loulou":(
-    "body_bg": #4b0c36,
-    "body_color": #f8c8e8,
-    "accent_color": #0c4b0c
-  ), "van-cleef":(
-    "body_bg": #4b0c0c,
-    "body_color": #f8c9c9,
-    "accent_color": #0c4b36
-  ), "bronze-olive":(
-    "body_bg": #4b360c,
-    "body_color": #f8e8c9,
-    "accent_color": #0c364b
-  ), "clover":(
-    "body_bg": #364b0c,
-    "body_color": #e8f8c9,
-    "accent_color": #0c0c4b
-  ), "dark-fern":(
-    "body_bg": #0c4b0c,
-    "body_color": #c9f8c9,
-    "accent_color": #360c4b
-  ), "bottle-green":(
-    "body_bg": #0c4b36,
-    "body_color": #c9f8e8,
-    "accent_color": #4b0c36
-  )) !default;
+$palette-colors: ("gen-light":(
+  "body_bg": #fff,
+  "body_color": #212529,
+  "accent_color": #ff9671
+), "gen-dark":(
+  "body_bg": #212529,
+  "body_color": #adb5bd,
+  "accent_color": #c34a36
+), "snowberry":(
+  "body_bg": #e8e8e8,
+  "body_color": #181818,
+  "accent_color": #ff9671
+), "perfume":(
+  "body_bg": #c9c9f8,
+  "body_color": #0c0c4b,
+  "accent_color": #4b360c
+), "pink-illusion":(
+  "body_bg": #e8c9f8,
+  "body_color": #360c4b,
+  "accent_color": #364b0c
+), "chantilly":(
+  "body_bg": #f8c8e8,
+  "body_color": #4b0c36,
+  "accent_color": #0c4b0c
+), "azalea":(
+  "body_bg": #f8c9c9,
+  "body_color": #4b0c0c,
+  "accent_color": #0c4b36
+), "givry":(
+  "body_bg": #f8e8c9,
+  "body_color": #4b360c,
+  "accent_color": #0c364b
+), "orinoco":(
+  "body_bg": #e8f8c9,
+  "body_color": #364b0c,
+  "accent_color": #0c0c4b
+), "blue-romance":(
+  "body_bg": #c9f8c9,
+  "body_color": #0c4b0c,
+  "accent_color": #360c4b
+), "humming-bird":(
+  "body_bg": #c9f8e8,
+  "body_color": #0c4b36,
+  "accent_color": #4b0c36
+), "tropical-blue":(
+  "body_bg": #c9e8f8,
+  "body_color": #0c364b,
+  "accent_color": #4b0c0c
+), "thamar-black":(
+  "body_bg": #181818,
+  "body_color": #e8e8e8,
+  "accent_color": #c34a36
+), "black-rock":(
+  "body_bg": #020222,
+  "body_color": #c9c9f8,
+  "accent_color": #d18819
+), "jaguar":(
+  "body_bg": #170222,
+  "body_color": #e8c9f8,
+  "accent_color": #1bd086
+), "jacaranda":(
+  "body_bg": #220218,
+  "body_color": #f8c8e8,
+  "accent_color": #1a64d1
+), "sepia-black":(
+  "body_bg": #220202,
+  "body_color": #f8c9c9,
+  "accent_color": #d13419
+), "kilamanjaro":(
+  "body_bg": #221802,
+  "body_color": #f8e8c9,
+  "accent_color": #d17a1a
+), "pine-tree":(
+  "body_bg": #172202,
+  "body_color": #e8f8c9,
+  "accent_color": #1bdaa2
+), "deep-fir":(
+  "body_bg": #012301,
+  "body_color": #c9f8c9,
+  "accent_color": #da1b42
+), "english-holly":(
+  "body_bg": #032118,
+  "body_color": #c9f8e8,
+  "accent_color": #d81b1b
+), "black-pearl":(
+  "body_bg": #031821,
+  "body_color": #c9e8f8,
+  "accent_color": #971bd8
+)) !default;

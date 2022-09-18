@@ -10,10 +10,6 @@
   body_bg: "#e8e8e8"
   body_color: "#181818"
   accent_color: "#FF9671"
-- name: tropical-blue
-  body_bg: "#c9e8f8"
-  body_color: "#0c364b"
-  accent_color: "#4b0c0c"
 - name: perfume
   body_bg: "#c9c9f8"
   body_color: "#0c0c4b"
@@ -46,44 +42,47 @@
   body_bg: "#c9f8e8"
   body_color: "#0c4b36"
   accent_color: "#4b0c36"
+- name: tropical-blue
+  body_bg: "#c9e8f8"
+  body_color: "#0c364b"
+  accent_color: "#4b0c0c"
 - name: thamar-black
   body_bg: "#181818"
   body_color: "#e8e8e8"
   accent_color: "#C34A36"
-- name: tarawera
-  body_bg: "#0c364b"
-  body_color: "#c9e8f8"
-  accent_color: "#4b0c0c"
-- name: violet
-  body_bg: "#0c0c4b"
+- name: black-rock
+  body_bg: "#020222"
   body_color: "#c9c9f8"
-  accent_color: "#4b360c"
-- name: jagger
-  body_bg: "#360c4b"
+  accent_color: "#d18819"
+- name: jaguar
+  body_bg: "#170222"
   body_color: "#e8c9f8"
-  accent_color: "#364b0c"
-- name: loulou
-  body_bg: "#4b0c36"
+  accent_color: "#1bd086"
+- name: jacaranda
+  body_bg: "#220218"
   body_color: "#f8c8e8"
-  accent_color: "#0c4b0c"
-- name: van-cleef
-  body_bg: "#4b0c0c"
+  accent_color: "#1a64d1"
+- name: sepia-black
+  body_bg: "#220202"
   body_color: "#f8c9c9"
-  accent_color: "#0c4b36"
-- name: bronze-olive
-  body_bg: "#4b360c"
+  accent_color: "#d13419"
+- name: kilamanjaro
+  body_bg: "#221802"
   body_color: "#f8e8c9"
-  accent_color: "#0c364b"
-- name: clover
-  body_bg: "#364b0c"
+  accent_color: "#d17a1a"
+- name: pine-tree
+  body_bg: "#172202"
   body_color: "#e8f8c9"
-  accent_color: "#0c0c4b"
-- name: dark-fern
-  body_bg: "#0c4b0c"
+  accent_color: "#1bdaa2"
+- name: deep-fir
+  body_bg: "#012301"
   body_color: "#c9f8c9"
-  accent_color: "#360c4b"
-- name: bottle-green
-  body_bg: "#0c4b36"
+  accent_color: "#da1b42"
+- name: english-holly
+  body_bg: "#032118"
   body_color: "#c9f8e8"
-  accent_color: "#4b0c36"
-
+  accent_color: "#d81b1b"
+- name: black-pearl
+  body_bg: "#031821"
+  body_color: "#c9e8f8"
+  accent_color: "#971bd8"

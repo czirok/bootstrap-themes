@@ -19,7 +19,6 @@
       $bg-color: if($is-dark, shade-color($color, 50%), tint-color($color, 40%));
       $fg-color: if($is-dark, tint-color($color, 65%), shade-color($color, 65%));
 
-      // .text-*
       // http://localhost:9001/docs/5.2/utilities/colors/
       .text-#{$theme} {
         @if ($theme != "light" and $theme != "dark") {
@@ -28,13 +27,11 @@
         }
       }
 
-      // .bg-*
       // http://localhost:9001/docs/5.2/utilities/background/
       .bg-#{$theme} {
         --#{$prefix}#{$theme}-rgb: #{to-rgb($bg-color)};
       }
 
-      // .text-bg-*
       // http://localhost:9001/docs/5.2/helpers/color-background/
       .text-bg-#{$theme} {
         background-color: RGBA(to-rgb($bg-color), var(--#{$prefix}bg-opacity, 1)) if($enable-important-utilities, !important, null);
@@ -53,7 +50,6 @@
         }
       }
 
-      // .link-*
       // http://localhost:9001/docs/5.2/helpers/colored-links/
       .link-#{$theme} {
         $link-color: if($is-dark, tint-color($color, 30%), shade-color($color, 20%));
@@ -62,13 +58,11 @@
         color: var(--#{$prefix}link-color) if($enable-important-utilities, !important, null);
       }
 
-      // .border-*
       // http://localhost:9001/docs/5.2/utilities/borders/
       .border-#{$theme} {
         --#{$prefix}#{$theme}-rgb: #{to-rgb(if($is-dark, tint-color($color, 30%), shade-color($color, 20%)))};
       }
 
-      // .alert-*
       // http://localhost:9001/docs/5.2/components/alerts/
       $alert-bg: rgba(var(--#{$prefix}#{$theme}-rgb), .3);
       $alert-border: rgba(var(--#{$prefix}#{$theme}-rgb), .4);
@@ -87,7 +81,6 @@
         }
       }
 
-      // .table-*
       // http://localhost:9001/docs/5.2/content/tables/#variants
       @if ($theme != "light" and $theme != "dark") {
         @include table-theme-variant($theme, $bg-color, $fg-color);
@@ -103,7 +96,6 @@
         }
       }
 
-      // .list-group-item-*
       // http://localhost:9001/docs/5.2/components/list-group/#contextual-classes
       @if ($theme != "light" and $theme != "dark") {
         @include list-group-theme-variants($theme, $bg-color, $fg-color);
@@ -119,7 +111,6 @@
         }
       }
 
-      // .button-*
       // http://localhost:9001/docs/5.2/components/buttons/
       @if ($theme != "light" and $theme != "dark") {
         $b-btn: if($is-dark, shade-color($color, 40%), tint-color($color, 40%));
@@ -128,7 +119,7 @@
           @include button-variant($bg-btn, $b-btn);
         }
 
-        $fg-btn-outline: if($is-dark, shade-color($color, 15%), tint-color($color, 20%));
+        $fg-btn-outline: if($is-dark, shade-color($color, 10%), tint-color($color, 20%));
         $ah-btn-outline: if($is-dark, shade-color($color, 45%), tint-color($color, 50%));
         .btn-outline-#{$theme} {
           @include button-outline-variant($fg-btn-outline, color-contrast($fg-btn-outline), $ah-btn-outline);

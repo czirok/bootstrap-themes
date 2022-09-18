@@ -1,42 +1,200 @@
 /* stylelint-disable declaration-block-single-line-max-declarations */
 @import "bootstrap-import";
 
+$bd-callout-variants: info, warning, danger !default;
+
+.bd-callout {
+  --bd-callout-bg: rgba(var(--#{$prefix}secondary-color-rgb), .3);
+  --bd-callout-border: rgba(var(--#{$prefix}secondary-color-rgb), .4);
+}
+
+// Variations
+@each $variant in $bd-callout-variants {
+  .bd-callout-#{$variant} {
+    --bd-callout-bg: rgba(var(--bs-#{$variant}-rgb), .3);
+    --bd-callout-border: rgba(var(--bs-#{$variant}-rgb), .4);
+  }
+}
+
+// http://localhost:9001/docs/5.2/components/tooltips/#custom-tooltips
+.custom-tooltip {
+  --bs-tooltip-color: color-contrast($primary);
+}
+
+
+.anchor-link {
+  color: var(--#{$prefix}link-color);
+  filter: opacity(50%);
+
+  &:focus,
+  &:hover,
+  :hover > &,
+  :target > & {
+    color: var(--#{$prefix}link-color);
+  }
+}
+
+.btn-bd-light {
+  --bs-btn-color: var(--#{$prefix}secondary-color);
+}
+
+.highlight {
+  .hl { background-color: var(--base02); }
+  .c { color: var(--base03); }
+  .err { color: var(--base08); }
+  .k { color: var(--base0E); }
+  .l { color: var(--base09); }
+  .n { color: var(--base08); }
+  .o { color: var(--base05); }
+  .p { color: var(--base05); }
+  .cm { color: var(--base03); }
+  .cp { color: var(--base08); }
+  .c1 { color: var(--base03); }
+  .cs { color: var(--base04); }
+  .gd { color: var(--base08); }
+  .ge { font-style: italic; }
+  .gh {
+    font-weight: 600;
+    color: #fff;
+  }
+  .gi { color: var(--base0B); }
+  .gp {
+    font-weight: 600;
+    color: var(--base04);
+  }
+  .gs { font-weight: 600; }
+  .gu {
+    font-weight: 600;
+    color: var(--base0C);
+  }
+  .kc { color: var(--base0E); }
+  .kd { color: var(--base0E); }
+  .kn { color: var(--base0C); }
+  .kp { color: var(--base0E); }
+  .kr { color: var(--base0E); }
+  .kt { color: var(--base0A); }
+  .ld { color: var(--base0C); }
+  .m { color: var(--base09); }
+  .s { color: var(--base0C); }
+  .na { color: var(--base0A); }
+  .nb { color: var(--base05); }
+  .nc { color: var(--base07); }
+  .no { color: var(--base08); }
+  .nd { color: var(--base07); }
+  .ni { color: var(--base08); }
+  .ne { color: var(--base08); }
+  .nf { color: var(--base0B); }
+  .nl { color: var(--base05); }
+  .nn { color: var(--base0A); }
+  .nx { color: var(--base0A); }
+  .py { color: var(--base08); }
+  .nt { color: var(--base08); }
+  .nv { color: var(--base08); }
+  .ow { color: var(--base0C); }
+  .w { color: var(--bs-white); }
+  .mf { color: var(--base09); }
+  .mh { color: var(--base09); }
+  .mi { color: var(--base09); }
+  .mo { color: var(--base09); }
+  .sb { color: var(--base0C); }
+  .sc { color: var(--bs-white); }
+  .sd { color: var(--base04); }
+  .s2 { color: var(--base0C); }
+  .se { color: var(--base09); }
+  .sh { color: var(--base0C); }
+  .si { color: var(--base09); }
+  .sx { color: var(--base0C); }
+  .sr { color: var(--base0C); }
+  .s1 { color: var(--base0C); }
+  .ss { color: var(--base0C); }
+  .bp { color: var(--base05); }
+  .vc { color: var(--base08); }
+  .vg { color: var(--base08); }
+  .vi { color: var(--base08); }
+  .il { color: var(--base09); }
+
+  // Color commas in rgba() values
+  .m + .o { color: var(--base03); }
+
+  // Fix bash
+  .language-sh .c { color: var(--base03); }
+
+
+  pre code {
+    color: var(--#{$prefix}body-color);
+  }
+}
+
+.chroma {
+  .language-bash,
+  .language-sh {
+    .line::before {
+      color: var(--base03);
+    }
+  }
+
+  .language-powershell::before {
+    color: var(--base0C);
+  }
+}
+
+.bd-placeholder-img {
+  rect {
+    fill: var(--#{$prefix}tertiary-color);
+  }
+  text {
+    fill: var(--#{$prefix}tertiary-bg);
+  }
+}
+
+.bd-placeholder-img-lg {
+  @include font-size(3.5rem);
+}
+
+.blockquote-footer {
+  margin-top: -1rem;
+  margin-bottom: 1rem;
+  font-size: .875em;
+  color: var(--#{$prefix}tertiary-color);
+}
+
+@each $theme, $hex-color in $theme-colors {
+  @if ($theme != "white" and $theme != "gray" and $theme != "gray-dark") {
+    $color-100: tint-color($hex-color, 80%);
+    $color-200: tint-color($hex-color, 60%);
+    $color-300: tint-color($hex-color, 40%);
+    $color-400: tint-color($hex-color, 20%);
+    $color-500: $hex-color;
+    $color-600: shade-color($hex-color, 20%);
+    $color-700: shade-color($hex-color, 40%);
+    $color-800: shade-color($hex-color, 60%);
+    $color-900: shade-color($hex-color, 80%);
+
+    .bd-#{$theme}-100 { color: color-contrast($color-100); background-color: $color-100; }
+    .bd-#{$theme}-200 { color: color-contrast($color-200); background-color: $color-200; }
+    .bd-#{$theme}-300 { color: color-contrast($color-300); background-color: $color-300; }
+    .bd-#{$theme}-400 { color: color-contrast($color-400); background-color: $color-400; }
+    .bd-#{$theme}-500 { color: color-contrast($color-500); background-color: $color-500; }
+    .bd-#{$theme}-600 { color: color-contrast($color-600); background-color: $color-600; }
+    .bd-#{$theme}-700 { color: color-contrast($color-700); background-color: $color-700; }
+    .bd-#{$theme}-800 { color: color-contrast($color-800); background-color: $color-800; }
+    .bd-#{$theme}-900 { color: color-contrast($color-900); background-color: $color-900; }
+  }
+}
+
 @each $palette, $palette-map in $palette-colors {
 
   $bg-body: map-get($palette-map, "body_bg");
-  $fg-body: map-get($palette-map, "body_color");
-
   $is-dark: color-contrast($bg-body) == $color-contrast-light;
 
   [data-bs-theme="#{$palette}"] {
-
-    .btn-bd-light {
-      --bs-btn-color: $fg-body;
-    }
-
-    // http://localhost:9001/docs/5.2/components/tooltips/#custom-tooltips
-    .custom-tooltip {
-      --bs-tooltip-color: color-contrast($primary);
-    }
-
-    .anchor-link {
-      color: rgba(var(--#{prefix}body-bg-rgb), .5);
-
-      &:focus,
-      &:hover,
-      :hover > &,
-      :target > & {
-        color: var(--#{prefix}body-bg-rgb);
-      }
-    }
-
     .highlight {
       @if ($is-dark) {
         --base00: #282c34;
         --base01: #353b45;
         --base02: #3e4451;
         --base03: #868e96;
-        --base04: #565c64;
+        --base04: #8b8b8b;
         --base05: #abb2bf;
         --base06: #b6bdca;
         --base07: #d19a66;
@@ -67,30 +225,6 @@
         --base0E: #a71d5d;
         --base0F: #333;
       }
-    }
-  }
-
-  @each $theme, $hex-color in $theme-colors {
-    @if ($theme != "white" and $theme != "gray" and $theme != "gray-dark") {
-      $color-100: tint-color($hex-color, 80%);
-      $color-200: tint-color($hex-color, 60%);
-      $color-300: tint-color($hex-color, 40%);
-      $color-400: tint-color($hex-color, 20%);
-      $color-500: $hex-color;
-      $color-600: shade-color($hex-color, 20%);
-      $color-700: shade-color($hex-color, 40%);
-      $color-800: shade-color($hex-color, 60%);
-      $color-900: shade-color($hex-color, 80%);
-
-      .bd-#{$theme}-100 { color: color-contrast($color-100); background-color: $color-100; }
-      .bd-#{$theme}-200 { color: color-contrast($color-200); background-color: $color-200; }
-      .bd-#{$theme}-300 { color: color-contrast($color-300); background-color: $color-300; }
-      .bd-#{$theme}-400 { color: color-contrast($color-400); background-color: $color-400; }
-      .bd-#{$theme}-500 { color: color-contrast($color-500); background-color: $color-500; }
-      .bd-#{$theme}-600 { color: color-contrast($color-600); background-color: $color-600; }
-      .bd-#{$theme}-700 { color: color-contrast($color-700); background-color: $color-700; }
-      .bd-#{$theme}-800 { color: color-contrast($color-800); background-color: $color-800; }
-      .bd-#{$theme}-900 { color: color-contrast($color-900); background-color: $color-900; }
     }
   }
 }

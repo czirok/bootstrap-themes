@@ -65,7 +65,6 @@
     --#{$prefix}link-hover-color: #{$link-hover-color};
     --#{$prefix}code-color: #{$code-color};
 
-    // .accordion-button-*
     // http://localhost:9001/docs/5.2/components/accordion/
     .accordion-button {
       --#{$prefix}accordion-active-color: var(--#{$prefix}accent-color);
@@ -81,7 +80,6 @@
       }
     }
 
-    // .list-group-item-*
     // http://localhost:9001/docs/5.2/components/list-group/
     .list-group-item {
       --#{$prefix}list-group-active-color: var(--#{$prefix}accent-color);
@@ -89,7 +87,6 @@
       --#{$prefix}list-group-active-border-color: var(--#{$prefix}accent-border);
     }
 
-    // .button-close*
     // http://localhost:9001/docs/5.2/components/close-button/
     $icon-btn-close:    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$fg-body}'><path d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/></svg>") !default;
 
@@ -97,8 +94,27 @@
       background: transparent escape-svg($icon-btn-close) center / $btn-close-width auto no-repeat; // include transparent for button elements
     }
 
-    // .form*
-    //
+    // http://localhost:9001/docs/5.2/components/progress/
+    .progress {
+      --#{$prefix}progress-bar-color: var(--#{$prefix}accent-color);
+      --#{$prefix}progress-bar-bg: var(--#{$prefix}accent-bg);
+    }
+
+    // http://localhost:9001/docs/5.2/components/carousel/
+    $icon-carousel-control-prev-bg:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$bg-body}'><path d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/></svg>") !default;
+    $icon-carousel-control-next-bg:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$bg-body}'><path d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/></svg>") !default;
+
+    .carousel-control-prev-icon {
+      background-image: escape-svg($icon-carousel-control-prev-bg);
+    }
+    .carousel-control-next-icon {
+      background-image: escape-svg($icon-carousel-control-next-bg);
+    }
+
+    .carousel-caption {
+      color: var(--#{$prefix}body-bg);
+    }
+
     // http://localhost:9001/docs/5.2/forms/select/
     $icon-form-select:    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='#{$fg-body}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/></svg>") !default;
 
@@ -107,8 +123,15 @@
     }
 
     // http://localhost:9001/docs/5.2/forms/checks-radios/#switches
-    $icon-form-switch-bg:    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='#{$fg-body}'/></svg>") !default;
+    $icon-form-switch-bg:        url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='#{$fg-body}'/></svg>") !default;
+    $icon-form-switch-focus-bg:  url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='#{$secondary-color}'/></svg>") !default;
+
     .form-switch {
+      .form-check-input {
+        &:focus {
+          background-image: escape-svg($icon-form-switch-focus-bg);
+        }
+      }
       // Use `:not()` to keep from having to override subsequent embedded SVGs
       .form-check-input:not(:checked):not(:focus) {
         background-image: escape-svg($icon-form-switch-bg);
@@ -121,16 +144,41 @@
         border-color: var(--#{$prefix}accent-border);
       }
 
+      &:focus {
+        border-color: var(--#{$prefix}border-color);
+        box-shadow: 0 0 $input-btn-focus-blur $input-btn-focus-width rgba(var(--#{$prefix}tertiary-color-rgb), $input-btn-focus-color-opacity);
+      }
+
       &[type="checkbox"]:indeterminate {
         background-color: var(--#{$prefix}accent-bg);
         border-color: var(--#{$prefix}accent-border);
       }
     }
 
-    // http://localhost:9001/docs/5.2/components/progress/
-    .progress {
-      --#{$prefix}progress-bar-color: var(--#{$prefix}accent-color);
-      --#{$prefix}progress-bar-bg: var(--#{$prefix}accent-bg);
+    // http://localhost:9001/docs/5.2/forms/range/
+    .form-range {
+      &::-webkit-slider-runnable-track {
+        background: var(--#{$prefix}tertiary-bg);
+      }
+      &::-webkit-slider-thumb {
+        background: var(--#{$prefix}accent-bg);
+      }
+
+      &::-moz-range-track {
+        background: var(--#{$prefix}tertiary-bg);
+      }
+
+      &::-moz-range-thumb {
+        background: var(--#{$prefix}accent-bg);
+      }
+    }
+
+    // http://localhost:9001/docs/5.2/forms/form-control/
+    .form-control {
+      &:focus {
+        border-color: var(--#{$prefix}border-color);
+        box-shadow: 0 0 $input-btn-focus-blur $input-btn-focus-width rgba(var(--#{$prefix}tertiary-color-rgb), $input-btn-focus-color-opacity);
+      }
     }
   }
 }
