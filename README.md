@@ -7,8 +7,9 @@
 
 ## SCSS short description
 
-Generates CSS from background and foreground colors and Bootstrap colors.
+Generates CSS from background, foreground and accent colors and Bootstrap colors.
 
+One minimized color theme size: 25.36 kilobyte
 
 ### Colors
 
@@ -22,7 +23,7 @@ Background and foreground and accent colors only. **gen-light** and **gen-dark**
 ### Root
 
 ```bash
-/site/assets/color/root.scss (128 rows.)
+/site/assets/color/root.scss (137 rows.)
 ```
 
 It's like bootstrap .root.scss
@@ -30,7 +31,7 @@ It's like bootstrap .root.scss
 ### Theme colors
 
 ```bash
-/site/assets/color/theme-colors.scss (143 rows.)
+/site/assets/color/theme-colors.scss (140 rows.)
 ```
 
 Everything that uses $theme-colors. Except for shadow.
