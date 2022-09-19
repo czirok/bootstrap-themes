@@ -5,10 +5,6 @@
 
 It only works with this Bootstrap source: [https://github.com/twbs/bootstrap/tree/new-masthead-darkmode](https://github.com/twbs/bootstrap/tree/new-masthead-darkmode)
 
-## What are the requirements for customize?
-
-[https://getbootstrap.com](https://getbootstrap.com) and [https://sass-lang.com](https://sass-lang.com)
-
 ## SCSS
 
 Generates CSS from background, foreground and accent colors, and Bootstrap colors. It's very small and includes everything you need to create a new color scheme and customize it. It only uses CSS variable override. **gen-light** and **gen-dark** same color as Bootstrap light and dark, except for the accent color. The other colors are just samples.
