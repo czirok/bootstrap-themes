@@ -62,7 +62,9 @@ What's not listed just works. Big thanks to the Bootstrap team.
 
 ## Install
 
-After you are done with [Bootstrap Contribute](https://getbootstrap.com/docs/5.2/getting-started/contribute/), and everything works, copy all files to bootstrap sources directory. **Except .git and README.md!**
+After you are done with [Bootstrap Contribute](https://getbootstrap.com/docs/5.2/getting-started/contribute/), and everything works, copy all files to bootstrap sources directory. 
+
+![Except .git, README.md and LICENSE](https://user-images.githubusercontent.com/1266377/191077083-de846731-3433-4c7d-bfd6-5c22338ee74a.svg)
 
 Open the **/packages.json** file, and add this content after [this line](https://github.com/twbs/bootstrap/blob/new-masthead-darkmode/package.json#L101)
 
