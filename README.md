@@ -52,7 +52,7 @@ What's not listed just works. Big thanks to the Bootstrap team.
 ### Helpers
 
 - [Color & background](https://bootstrap.czirok.net/docs/5.2/helpers/color-background/)
-- [Colored links](https://bootstrap.czirok.net/docs/5.2/helpers/colored-links/)]
+- [Colored links](https://bootstrap.czirok.net/docs/5.2/helpers/colored-links/)
 
 ### Utilities
 
